@@ -87,7 +87,9 @@ console.log(shirtStory);
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
 
-
+ticketPriceTotal = runners.reduce(function(accumulator, currentItem){
+    return accumulator + currentItem.donation;
+},0);
 
 console.log(ticketPriceTotal);
 
@@ -95,7 +97,48 @@ console.log(ticketPriceTotal);
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+//Bonus Swag/Gift for those who donated more than $250!
+//filter method
+
+let bigMoney = [];
+
+bigMoney = runners.filter( function(item){
+    return item.donation > 250
+});
+
+console.log(bigMoney);
+
 
 // Problem 2
+//Trying to find the company with the largest number of participants
+
+let groupByBiz = [];
+
+for (i = 0; i < runners.length; i++) {
+    groupByBiz.push (runners[i].company_name);
+}
+console.log(groupByBiz.sort());
+
 
 // Problem 3
+//Extra ribbon given to the highest donation!
+
+//-------> First Example
+// let highestBidder = [];
+// highestBidder = runners.reduce(function(accumulator, currentItem) {
+//     return Math.max(accumulator, currentItem.donation);
+// },0);
+// console.log(highestBidder)
+
+
+//-------> Second Example
+let findingHighestDonation = [];
+
+let highestDonation = Math.max.apply(Math,runners.map(function(item){
+    return item.donation
+}));
+
+findingHighestDonation = runners.filter(function(item) {
+    return item.donation === highestDonation
+});
+console.log(findingHighestDonation)
